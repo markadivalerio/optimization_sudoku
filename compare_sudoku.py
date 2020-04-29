@@ -240,10 +240,11 @@ def load_all():
                 model2, var2 = gurobi_solution(grid, binary=False)
                 # print_solution(grid, model2, var2)
 
+                total_bin_time += model.RunTime
+                bin_count += 1
+
                 if model.getAttr('X', var) == model2.getAttr('X', var2):
                     print('Equal    : %s %i: bin %.5f lin %.5f delta %.5f clues %s' % (name, i, model.RunTime, model2.RunTime, model.RunTime - model2.RunTime, clues))
-                    total_bin_time += model.RunTime
-                    bin_count += 1
                     total_lin_time += model2.RunTime
                     lin_count += 1
                 else:
@@ -255,10 +256,11 @@ def load_all():
                 model2, var2, sols2, sol_count2 = gurobi_solution2(grid, si, sj, binary=False)
                 # print_solution2(grid, model2, var2, si, sj)
 
+                total_bin_time += model.RunTime
+                bin_count += 1
+
                 if model.getAttr('X', var) == model2.getAttr('X', var2):
                     print('Equal    : %s %i: bin %.5f lin %.5f delta %.5f clues %s' % (name, i, model.RunTime, model2.RunTime, model.RunTime - model2.RunTime, clues))
-                    total_bin_time += model.RunTime
-                    bin_count += 1
                     total_lin_time += model2.RunTime
                     lin_count += 1
                 else:
